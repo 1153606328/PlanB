@@ -1,48 +1,91 @@
 <template>
   <div class="home">
-    <!--轮播-->
+    <!--轮播图-->
+    <van-search v-model="searchValue" placeholder="请输入搜索关键词" />
     <div class="banner">
       <van-swipe :autoplay="3000" height="200">
         <van-swipe-item v-for="(image, index) in images" :key="index">
-          <img v-lazy="image" />
+          <img v-lazy="image" width="100%"/>
         </van-swipe-item>
       </van-swipe>
     </div>
+    <!-- list列表 -->
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+      class="listBOX"
+    >
+      <van-card
+        num="2"
+        price="2.00"
+        desc="描述信息"
+        title="商品标题"
+        thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+        v-for="item in list" :key="item"
+      />
+    </van-list>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
+
 export default {
   name: "Home",
-  // components: {
-  //   HelloWorld
-  // },
+  components: {},
   data() {
     return {
-       images: [
+      images: [
         "https://img.yzcdn.cn/vant/apple-1.jpg",
         "https://img.yzcdn.cn/vant/apple-2.jpg"
       ],
+      list: [],
+      loading: false,
+      finished: false,
+      searchValue:""
     };
   },
   methods: {
-    // getfun() {
-    //   this.$http.get(this.$api.userinfo,).then(result => {
-    //     // 此处为获取数据后需要执行的代码，比如格式化数据、渲染数据列表等
-    //     console.log('666')
-    //   });
-    // },
-    // geteasy() {
-    //   this.$http.get('https://www.easy-mock.com/mock/5d14342427a7e80b4b3451f1/easy/userinfo',).then(result => {
-    //     // 此处为获取数据后需要执行的代码，比如格式化数据、渲染数据列表等
-    //     console.log('666')
-    //   });
-    // }
-  }
+    onLoad() {
+      // 异步更新数据
+      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
+      // setTimeout(() => {
+      //   for (let i = 0; i < 10; i++) {
+      //     this.list.push(this.list.length + 1);
+      //   }
+
+      //   // 加载状态结束
+      //   this.loading = false;
+
+      //   // 数据全部加载完成
+      //   if (this.list.length >= 40) {
+      //     this.finished = true;
+      //   }
+      // }, 1000);
+      console.log("onload")
+ 
+    },
+    getList(){
+      this.$http.get(this.$api.home_list,).then(res => {
+        console.log(res.code);
+        if(res.code==200){
+          this.list = res.data
+          this.loading = false;
+          this.finished = true;
+        }
+      });
+    }
+  },
+  created(){
+    this.getList()
+  },
 };
 </script>
-<style lang="less" scoped>
-.banner{
-  img{width:100%;}
+<style lang="less">
+.mb5 {
+  margin-bottom: 5px;
 }
 </style>

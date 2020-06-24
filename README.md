@@ -14,7 +14,7 @@
 #### 安装
 1、安装node  
 2、安装脚手架vue cli
-```
+```js
 npm install -g @vue/cli
 vue create hello-world //创建一个项目
 ```

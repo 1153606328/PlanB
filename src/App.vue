@@ -14,5 +14,10 @@
   text-align: center;
   color: #2c3e50;
 }
-
+.van-nav-bar{
+    background: @baseColor!important;
+    .van-nav-bar__title{
+        color: #fff!important;
+    }
+}
 </style>
