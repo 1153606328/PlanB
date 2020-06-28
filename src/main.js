@@ -20,6 +20,8 @@ import { Button,
   Empty,
   Card,
   Search,
+  Icon,
+  Popup,
   Tag   } from 'vant';
 import'vant/lib/index.css'
 import 'lib-flexible'
@@ -49,6 +51,8 @@ Vue.use(Empty);
 Vue.use(Card);
 Vue.use(Search);
 Vue.use(Tag);
+Vue.use(Icon);
+Vue.use(Popup);
 new Vue({
   router,
   store,

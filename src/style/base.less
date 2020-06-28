@@ -1,3 +1,10 @@
+@baseColor:#f95a5a;
+@baseColor2:#FF976A;
+@fuzhuColor:#FFFBE8;
+@fuzhuClolr2:#FFF7E8;
+@bgColor:#dedede;//背景色
+//文字颜色
+@fon:#323233;
 .loop(@counter) when (@counter > 0) {
     .p@{counter} {
       padding: (1px * @counter);
@@ -30,9 +37,9 @@
       margin-left: (1px * @counter);
     }
     .fs@{counter} {
-      font-size: (1px * @counter);
+      font-size: (1px * @counter)!important;
     }
     .loop((@counter - 1));    // 递归调用自身
   }
    
-  .loop(200);
+  .loop(50);
