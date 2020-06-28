@@ -85,3 +85,59 @@ module.exports = {
 // 插件会自动将代码转化为方式二中的按需引入形式
 import { Button } from 'vant';
 ```
+## 三、样式处理
+### 1、rem适配
+
+### 2、全局less变量
+在src下创建style文件夹，base.less(公用)
+``` less
+@baseColor:#f95a5a;
+@baseColor2:#FF976A;
+@fuzhuColor:#FFFBE8;
+@fuzhuClolr2:#FFF7E8;
+@bgColor:#dedede;//背景色
+//文字颜色
+@fon:#323233;
+```
+### 3、遍历生成类名
+在base.less中遍历生成类名-padding,magin等
+``` less
+.loop(@counter) when (@counter > 0) {
+    .p@{counter} {
+      padding: (1px * @counter);
+    }
+    .pt@{counter} {
+      padding-top: (1px * @counter);
+    }
+    .pr@{counter} {
+      padding-right: (1px * @counter);
+    }
+    .pb@{counter} {
+      padding-bottom: (1px * @counter);
+    }
+    .pl@{counter} {
+      padding-left: (1px * @counter);
+    }
+    .m@{counter} {
+      margin: (1px * @counter);
+    }
+    .mt@{counter} {
+      margin-top: (1px * @counter);
+    }
+    .mr@{counter} {
+      margin-right: (1px * @counter);
+    }
+    .mb@{counter} {
+      margin-bottom: (1px * @counter);
+    }
+    .ml@{counter} {
+      margin-left: (1px * @counter);
+    }
+    .fs@{counter} {
+      font-size: (1px * @counter);
+    }
+    .loop((@counter - 1));    // 递归调用自身
+  }
+   
+  .loop(200);
+```
