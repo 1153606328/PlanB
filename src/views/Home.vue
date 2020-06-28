@@ -15,16 +15,26 @@
       :finished="finished"
       finished-text="没有更多了"
       @load="onLoad"
+      offset = "10"
       class="listBOX"
     >
       <van-card
-        num="2"
-        price="2.00"
-        desc="描述信息"
-        title="商品标题"
+       v-for="item in list" :key="item.id"
+      
+        :desc= item.content
+        :title= item.title
         thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-        v-for="item in list" :key="item"
-      />
+      >
+        <template #tags>
+          <van-tag color="#f2826a" class="mr5" v-for="i in item.labes" :key ="i.leve">{{i.labe}}</van-tag>
+        </template>
+        <!-- <template #price>
+          <div>{{item.city}}</div>
+        </template> -->
+        <template #num>
+          <div>{{item.time}}</div>
+        </template>
+      </van-card>
     </van-list>
   </div>
 </template>
@@ -50,31 +60,26 @@ export default {
   },
   methods: {
     onLoad() {
-      // 异步更新数据
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      // setTimeout(() => {
-      //   for (let i = 0; i < 10; i++) {
-      //     this.list.push(this.list.length + 1);
-      //   }
+      setTimeout(() => {
+        this.getList()
+        // 加载状态结束
+        this.loading = false;
 
-      //   // 加载状态结束
-      //   this.loading = false;
-
-      //   // 数据全部加载完成
-      //   if (this.list.length >= 40) {
-      //     this.finished = true;
-      //   }
-      // }, 1000);
+        // 数据全部加载完成
+        if (this.list.length >= 15) {
+          this.finished = true;
+        }
+      }, 1000);
       console.log("onload")
- 
     },
     getList(){
       this.$http.get(this.$api.home_list,).then(res => {
         console.log(res.code);
-        if(res.code==200){
-          this.list = res.data
-          this.loading = false;
-          this.finished = true;
+        if(res.code == 200 &res.data.length>0){
+            res.data.map((item,index)=>{
+              console.log(item.id)
+              this.list.push(item)
+            })
         }
       });
     }
@@ -85,7 +90,7 @@ export default {
 };
 </script>
 <style lang="less">
-.mb5 {
-  margin-bottom: 5px;
+.mr5 {
+  margin-right: 5px;
 }
 </style>

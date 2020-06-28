@@ -19,7 +19,8 @@ import { Button,
   Col, Row,
   Empty,
   Card,
-  Search   } from 'vant';
+  Search,
+  Tag   } from 'vant';
 import'vant/lib/index.css'
 import 'lib-flexible'
 // 对后端接口 进行全局注册，将api挂载到vue的原型上
@@ -47,6 +48,7 @@ Vue.use(Row);
 Vue.use(Empty);
 Vue.use(Card);
 Vue.use(Search);
+Vue.use(Tag);
 new Vue({
   router,
   store,
