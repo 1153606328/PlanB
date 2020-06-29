@@ -1,10 +1,35 @@
 <template>
   <div id="app">
-    <van-nav-bar title="标题"  :fixed="true"  :placeholder="true" />
+    <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
     <router-view/>
   </div>
 </template>
-
+<script>
+import NavBar from "./components/common/NavBar.vue";
+export default {
+  components: {
+    NavBar
+  },
+  data() {
+    return {
+      title:'',
+      isleftarrow:'',
+      transitionName: "fade",
+      navShow: true
+    };
+  },
+  mounted() {//渲染完成后赋值title
+    this.title = this.$route.meta.title;
+    this.isleftarrow = this.$route.meta.isleftarrow;       
+  },
+  watch: {//路由变化时动态更新
+    $route(to, from) {
+      this.title = to.meta.title;
+      this.isleftarrow =  to.meta.isleftarrow;
+     }
+  }
+}
+</script>
 <style lang="less">
 @import "./style/index.less";
 #app {

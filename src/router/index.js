@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Address from '../views/Address.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +9,14 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
+    meta: { title: '首页', isleftarrow:false  },
     component: Home
+  },
+  {
+    path: '/address',
+    name: 'Address',
+    meta: { title: '编辑地址', isleftarrow:true  },
+    component: Address
   },
 ]
 

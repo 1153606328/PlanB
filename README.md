@@ -14,6 +14,8 @@
     - [1、rem适配](#1rem适配)
     - [2、全局less变量](#2全局less变量)
     - [3、遍历生成类名](#3遍历生成类名)
+  - [四、封装组件](#四封装组件)
+      - [1、NavBar导航](#1navbar导航)
 
 ## 技术栈
 - vue
@@ -153,4 +155,78 @@ import { Button } from 'vant';
   }
    
   .loop(200);
+```
+## 四、封装组件
+#### 1、NavBar导航
+1.1 在components/common目录下创建NavBar文件
+```vue
+<template>
+  <div class="Navbar">
+     <van-nav-bar :fixed="true" :placeholder="true" :title="title"  :left-arrow="isleftarrow" @click-left="onClickLeft" />
+  </div>
+</template>
+```
+1.2 NavBar 通过props 传递title和是否显示icon
+```js
+export default {
+  // title：用来显示导航栏的title，isleftarrow用来显示导航栏的左侧返回箭头
+  props: ["title","isleftarrow"],
+  methods: {
+    onClickLeft() {
+      // 点击回退的时候当做地址回退
+      this.$router.go(-1);
+    }
+  }
+};
+```
+1.3 修改router文件，添加mate
+```js
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    meta: { title: '首页', isleftarrow:false  },
+    component: Home
+  },
+  {
+    path: '/address',
+    name: 'Address',
+    meta: { title: '编辑地址', isleftarrow:true  },
+    component: Address
+  },
+```
+1.4 父组件调用NavBar
+```vue
+<template>
+  <div id="app">
+    <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
+    <router-view/>
+  </div>
+</template>
+<script>
+import NavBar from "./components/common/NavBar.vue";
+export default {
+  components: {
+    NavBar
+  },
+  data() {
+    return {
+      title:'',
+      isleftarrow:'',
+      transitionName: "fade",
+      navShow: true
+    };
+  },
+  mounted() {//渲染完成后赋值title
+    this.title = this.$route.meta.title;
+    this.isleftarrow = this.$route.meta.isleftarrow;       
+  },
+  watch: {//路由变化时动态更新
+    $route(to, from) {
+      this.title = to.meta.title;
+      this.isleftarrow =  to.meta.isleftarrow;
+     }
+  }
+}
+</script>
 ```

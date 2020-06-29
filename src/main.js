@@ -22,7 +22,7 @@ import { Button,
   Search,
   Icon,
   Popup,
-  Tag   } from 'vant';
+  Tag,AddressEdit,} from 'vant';
 import'vant/lib/index.css'
 import 'lib-flexible'
 // 对后端接口 进行全局注册，将api挂载到vue的原型上
@@ -53,6 +53,7 @@ Vue.use(Search);
 Vue.use(Tag);
 Vue.use(Icon);
 Vue.use(Popup);
+Vue.use(AddressEdit);
 new Vue({
   router,
   store,

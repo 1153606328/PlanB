@@ -37,7 +37,13 @@
       </van-card>
     </van-list>
     <!--弹出-->
-    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }" />
+    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }">
+      <van-cell-group border>
+        <van-cell title="视频" icon="video" value="10"/>
+        <van-cell title="相片" icon="photo" value="90"/>
+        <van-cell title="地点" icon="map-marked" value="10"/>
+      </van-cell-group>
+    </van-popup>
   </div>
 </template>
 
