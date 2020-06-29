@@ -174,7 +174,10 @@ export default {
   methods: {
     onClickLeft() {
       // 点击回退的时候当做地址回退
-      this.$router.go(-1);
+      let path = this.$route.path
+      if(path!='/'){
+        this.$router.go(-1);
+      }
     }
   }
 };

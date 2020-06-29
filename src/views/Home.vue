@@ -12,7 +12,7 @@
     <div class="footer" :style="footWidth">
       <div class="footer-box">
         <van-icon name="bars" class="fs24" @click="changePOP"/>
-        <van-icon name="add" class="addicon" v-show="iconVisible"/>
+        <van-icon name="add" class="addicon" v-show="iconVisible" @click="toAddress"/>
         <!-- <van-icon name="chat-o" badge="9" class="fs18" /> -->
       </div>
     </div>
@@ -37,7 +37,7 @@
       </van-card>
     </van-list>
     <!--弹出-->
-    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }">
+    <van-popup v-model="show" position="bottom" :style="{ height: '40%' }" @click-overlay="changePOP">
       <van-cell-group border>
         <van-cell title="视频" icon="video" value="10"/>
         <van-cell title="相片" icon="photo" value="90"/>
@@ -103,10 +103,15 @@ export default {
         this.iconVisible = true
         this.show = false
       }
+    },
+    toAddress(){//跳转
+      this.$router.push('/addplan')
     }
+
   },
   created() {
     // this.getList();
+    
   }
 };
 </script>
@@ -131,6 +136,11 @@ export default {
     position: absolute;
     left: 44%;
     top: -10px;
+  }
+}
+.van-cell-group{
+  i{
+    font-size: 20px
   }
 }
 </style>

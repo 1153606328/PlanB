@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Address from '../views/Address.vue'
+import Addplan from '../views/Addplan.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,12 @@ Vue.use(VueRouter)
     name: 'Address',
     meta: { title: '编辑地址', isleftarrow:true  },
     component: Address
+  },
+  {
+    path: '/addplan',
+    name: 'Addplan',
+    meta: { title: '添加计划', isleftarrow:true  },
+    component: Addplan
   },
 ]
 
