@@ -23,7 +23,8 @@ import { Button,
   Icon,
   Popup,
   Tag,AddressEdit,Form,Field,
-  Calendar,Picker 
+  Calendar,Picker,Toast,
+  ShareSheet
 } from 'vant';
 import'vant/lib/index.css'
 import 'lib-flexible'
@@ -60,6 +61,8 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Calendar);
 Vue.use(Picker);
+Vue.use(Toast);
+Vue.use(ShareSheet);
 new Vue({
   router,
   store,

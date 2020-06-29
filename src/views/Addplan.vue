@@ -6,11 +6,11 @@
         name="title"
         label="标题"
         placeholder="标题"
-        :rules="[{ required: true, message: '请填计划标题' }]"
+        :rules="[{ required: true, content: '请填计划标题' }]"
       />
       <van-field
         readonly
-        name = "date"
+        name="date"
         clickable
         label="选择日期"
         :value="date"
@@ -36,9 +36,17 @@
           @confirm="onPickConfirm"
         />
       </van-popup>
-
+      <van-field
+        v-model="content"
+        rows="1"
+        name="content"
+        autosize
+        label="内容"
+        type="textarea"
+        placeholder="请输入内容"
+      />
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit" color="#f95a5a">提交</van-button>
+        <van-button round block type="info" native-type="submit" color="#f95a5a">添加</van-button>
       </div>
     </van-form>
   </div>
@@ -53,18 +61,21 @@ export default {
     return {
       Dateshow: false,
       minDate: new Date(2018, 0, 1),
-      pickvule:'',
+      pickvule: "",
       showPicker: false,
-      columns: ['游记', '探店', '开箱', '美食', '打卡'],
+      columns: ["游记", "探店", "开箱", "美食", "打卡"],
       date: "", //选中的日期
-      title: "",
-      labes: ""
+      title: "",//标题
+      labes: "",//标签
+      content:"",//内容
     };
   },
   methods: {
     onSubmit(values) {
       //提交表单
       console.log("submit", values);
+      this.$toast.success("添加成功")
+      // Toast.fail('失败文案');
     },
     formatDate(date) {
       return `${date.getMonth() + 1}/${date.getDate()}`;
@@ -78,8 +89,7 @@ export default {
     onPickConfirm(value) {
       this.pickvule = value;
       this.showPicker = false;
-
-    },
+    }
   }
 };
 </script>

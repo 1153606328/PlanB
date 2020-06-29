@@ -10,6 +10,10 @@
       - [运行](#运行)
   - [二、安装插件/库](#二安装插件库)
     - [vant](#vant)
+      - [vant的坑](#vant的坑)
+        - [1、Toast组件](#1toast组件)
+      - [组件的高级用法](#组件的高级用法)
+        - [1、NavBar插槽定制内容](#1navbar插槽定制内容)
   - [三、样式处理](#三样式处理)
     - [1、rem适配](#1rem适配)
     - [2、全局less变量](#2全局less变量)
@@ -99,6 +103,23 @@ module.exports = {
 // 接着你可以在代码中直接引入 Vant 组件
 // 插件会自动将代码转化为方式二中的按需引入形式
 import { Button } from 'vant';
+```
+#### vant的坑
+##### 1、Toast组件
+全局注册Toast 组件内使用Toast报错，使用vant的Toast组件时提示not defined
+```js
+Toast.success('添加成功');
+```
+解决方法：
+```js
+this.$toast.success("添加成功")
+```
+#### 组件的高级用法
+##### 1、NavBar插槽定制内容
+```js
+<van-nav-bar title="标题" left-text="返回" left-arrow>
+  <van-icon name="search" slot="right" />
+</van-nav-bar>
 ```
 ## 三、样式处理
 ### 1、rem适配
