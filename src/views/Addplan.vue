@@ -8,6 +8,7 @@
         placeholder="标题"
         :rules="[{ required: true, content: '请填计划标题' }]"
       />
+      <!-- 选择日期 -->
       <van-field
         readonly
         name="date"
@@ -18,6 +19,7 @@
         @click="Dateshow = true"
       />
       <van-calendar v-model="Dateshow" type="range" :min-date="minDate" @confirm="onConfirm" />
+      <!-- 选择标签 -->
       <van-field
         readonly
         clickable
@@ -45,6 +47,13 @@
         type="textarea"
         placeholder="请输入内容"
       />
+      <!-- 上传图片 -->
+      <van-uploader
+        :before-read="beforeRead"
+        v-model="fileList"
+        multiple
+        :max-count="4"
+        />
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit" color="#f95a5a">添加</van-button>
       </div>
@@ -68,6 +77,7 @@ export default {
       title: "",//标题
       labes: "",//标签
       content:"",//内容
+      fileList:[]
     };
   },
   methods: {
@@ -86,10 +96,35 @@ export default {
       this.Dateshow = false;
       this.date = `${this.formatDate(start)} - ${this.formatDate(end)}`;
     },
-    onPickConfirm(value) {
+    onPickConfirm(value) {//选择标签完成
       this.pickvule = value;
       this.showPicker = false;
-    }
+    },
+    // 返回布尔值
+    beforeRead(file) {
+      if (file.type !== 'image/jpeg') {
+        
+        this.$toast('请上传 jpg 格式图片');
+        return false;
+      }
+      console.log("222")
+      return true;
+    },
+    // 返回 Promise
+    asyncBeforeRead(file) {
+      return new Promise((resolve, reject) => {
+        if (file.type !== 'image/jpeg') {
+          this.$toast('请上传 jpg 格式图片');
+          reject();
+        } else {
+          let img = new File(['foo'], 'bar.jpg', {
+            type: 'image/jpeg',
+          });
+          resolve(img);
+        }
+      });
+    },
+
   }
 };
 </script>
