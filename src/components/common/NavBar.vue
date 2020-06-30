@@ -50,6 +50,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 .van-nav-bar {
+  z-index: 10!important;
   .van-icon {
     color: #fff !important;
   }

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Address from '../views/Address.vue'
 import Addplan from '../views/Addplan.vue'
+import City from '../views/City.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,13 @@ Vue.use(VueRouter)
     meta: { title: '添加计划', isleftarrow:true  },
     component: Addplan
   },
+  {
+    path: '/city',
+    name: 'City',
+    meta: { title: '城市', isleftarrow:true  },
+    component: City
+  },
+
 ]
 
 const router = new VueRouter({

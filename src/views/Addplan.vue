@@ -130,6 +130,8 @@ export default {
 </script>
 <style lang="less">
 .addplan {
+    background: #fff;
+  .van-cell{border-bottom: 1px solid #e2e2e2}
   .van-cell__title {
     text-align: left;
   }

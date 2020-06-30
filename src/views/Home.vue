@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <!--轮播图-->
-    <van-search v-model="searchValue" placeholder="请输入搜索关键词" />
+    
     <div class="banner">
       <van-swipe :autoplay="3000" height="200">
         <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -9,10 +8,13 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <!--轮播图-->
+    <van-search v-model="searchValue" placeholder="请输入搜索关键词" shape="round"
+  background="#ffffff00"/>
     <div class="footer" :style="footWidth">
       <div class="footer-box">
         <van-icon name="bars" class="fs24" @click="changePOP"/>
-        <van-icon name="add" class="addicon" v-show="iconVisible" @click="toAddress"/>
+        <van-icon name="add" class="addicon" v-show="iconVisible" @click="toRoute('/addplan')"/>
         <!-- <van-icon name="chat-o" badge="9" class="fs18" /> -->
       </div>
     </div>
@@ -41,7 +43,7 @@
       <van-cell-group border>
         <van-cell title="视频" icon="video" value="10"/>
         <van-cell title="相片" icon="photo" value="90"/>
-        <van-cell title="地点" icon="map-marked" value="10"/>
+        <van-cell title="地点" icon="map-marked" value="10" is-link to="/city"/>
       </van-cell-group>
     </van-popup>
   </div>
@@ -54,8 +56,8 @@ export default {
   data() {
     return {
       images: [
-        "https://img.yzcdn.cn/vant/apple-1.jpg",
-        "https://img.yzcdn.cn/vant/apple-2.jpg"
+        "https://shitu-query-gz.gz.bcebos.com/2020-06-30/14/690277a4bdcc6709?authorization=bce-auth-v1%2F7e22d8caf5af46cc9310f1e3021709f3%2F2020-06-30T14%3A29%3A07Z%2F300%2Fhost%2Ffc8b408a5cc53248a637f641699dee7bc194ecdba83955f7ea87e65b2f58b844",
+        "https://shitu-query-gz.gz.bcebos.com/2020-06-30/14/d68e10c95f6d78ca?authorization=bce-auth-v1%2F7e22d8caf5af46cc9310f1e3021709f3%2F2020-06-30T14%3A30%3A52Z%2F300%2Fhost%2F01ed37be4eb2fb067a60282b63099911168979e9462d81b0b95a832d6933cef0"
       ],
       list: [],
       loading: false,
@@ -104,8 +106,8 @@ export default {
         this.show = false
       }
     },
-    toAddress(){//跳转
-      this.$router.push('/addplan')
+    toRoute(path){//跳转
+      this.$router.push(path)
     }
 
   },

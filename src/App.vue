@@ -38,7 +38,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: @bgColor;
 }
+p{margin: 0;}
 .van-nav-bar{
     background: @baseColor!important;
     .van-nav-bar__title{
