@@ -5,8 +5,8 @@
         v-model="title"
         name="title"
         label="标题"
-        placeholder="标题"
-        :rules="[{ required: true, content: '请填计划标题' }]"
+        placeholder="请填标题"
+        :rules="[{ required: true, content: '' }]"
       />
       <!-- 选择日期 -->
       <van-field
