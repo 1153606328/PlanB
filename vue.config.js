@@ -1,5 +1,10 @@
 
 module.exports = {
+  publicPath: "./",
+  // 输出文件目录
+  outputDir: "dist",
+  // 静态资源存放的文件夹(相对于ouputDir)
+  assetsDir: "static",
   devServer: {
     port: 8080,
     // open: true, //配置自动启动浏览器
@@ -8,6 +13,7 @@ module.exports = {
     proxy: {
       "/api": {
         target: "http://localhost:8080", //后端ip地址及端口
+        // target: "panhuaqing.cn", //后端ip地址及端口
         ws: true, //是否跨域
         changeOrigin: true,
         pathRewrite: {

@@ -39,6 +39,9 @@
     .fs@{counter} {
       font-size: (1px * @counter)!important;
     }
+    .lh@{counter} {
+      line-height: (1px * @counter)!important;
+    }
     .loop((@counter - 1));    // 递归调用自身
   }
    

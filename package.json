@@ -11,7 +11,7 @@
     "core-js": "^3.6.5",
     "lib-flexible": "^0.3.2",
     "postcss-plugin-px2rem": "^0.8.1",
-    "vant": "^2.8.7",
+    "vant": "^2.11.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.2.0",

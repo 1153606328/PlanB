@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
+    <!-- <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar> -->
     <router-view/>
   </div>
 </template>
@@ -32,6 +32,9 @@ export default {
 </script>
 <style lang="less">
 @import "./style/index.less";
+html,body{
+  height: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

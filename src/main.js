@@ -24,7 +24,9 @@ import { Button,
   Popup,
   Tag,AddressEdit,Form,Field,
   Calendar,Picker,Toast,
-  ShareSheet,Uploader,Step, Steps,Skeleton 
+  ShareSheet,Uploader,Step, Steps,Skeleton,
+  Divider,Sticky,Popover,Tab,Tabs,
+  Image as VanImage
 } from 'vant';
 import'vant/lib/index.css'
 import 'lib-flexible'
@@ -67,6 +69,12 @@ Vue.use(Uploader);
 Vue.use(Step);
 Vue.use(Steps);
 Vue.use(Skeleton);
+Vue.use(VanImage);
+Vue.use(Divider);
+Vue.use(Sticky); 
+Vue.use(Popover);
+Vue.use(Tab);
+Vue.use(Tabs);
 new Vue({
   router,
   store,

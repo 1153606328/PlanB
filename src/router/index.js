@@ -4,16 +4,17 @@ import Home from '../views/Home.vue'
 import Address from '../views/Address.vue'
 import Addplan from '../views/Addplan.vue'
 import City from '../views/City.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    meta: { title: '首页', isleftarrow:false  },
-    component: Home
-  },
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   meta: { title: '首页', isleftarrow:false  },
+  //   component: Home
+  // },
   {
     path: '/address',
     name: 'Address',
@@ -31,6 +32,12 @@ Vue.use(VueRouter)
     name: 'City',
     meta: { title: '城市', isleftarrow:true  },
     component: City
+  },
+  {
+    path: '/',
+    name: 'About',
+    meta: { title: '关于我们', isleftarrow:true  },
+    component: About
   },
 
 ]
