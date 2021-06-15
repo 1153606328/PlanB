@@ -1,61 +1,61 @@
 <template>
   <div class="Navbar">
-    <van-nav-bar
-      :fixed="true"
-      :placeholder="true"
-      :title="title"
-      right-text="分享"
-      :left-arrow="isleftarrow"
-      @click-left="onClickLeft"
-      @click-right="showShare = true"
-    >
-    <van-icon name="share" slot="right" />
-    </van-nav-bar>
-    <van-share-sheet v-model="showShare" title="立即分享给好友" :options="options" @select="onSelect" />
+	<div class="top-box">
+	  <img src="../../assets/logo.png" alt="图标" class="top-left">
+	  <div class="top-right">
+	    <div  v-for="item in tab_list" :key="item.id"
+		:class="tab===item.id?'top-right-tab on':'top-right-tab'"
+		@click="onTab(item.id)"
+		>
+		{{item.name}}
+		</div>
+	  </div>
+	</div>
   </div>
 </template>
 
 <script>
 export default {
-  // title：用来显示导航栏的title，isleftarrow用来显示导航栏的左侧返回箭头
-  props: ["title", "isleftarrow"],
   data() {
     return {
-      showShare: false,
-      options: [
-        { name: "微信", icon: "wechat" },
-        { name: "微博", icon: "weibo" },
-        { name: "复制链接", icon: "link" },
-        { name: "分享海报", icon: "poster" },
-        { name: "二维码", icon: "qrcode" }
-      ]
+		tab_list:[{name:"首页",id:0},{name:"案例",id:1},{name:"文章",id:2}],
+		tab:0,
     };
   },
   methods: {
-    onClickLeft() {
-      // 点击回退的时候当做地址回退
-      let path = this.$route.path;
-      if (path != "/") {
-        this.$router.go(-1);
-      }
+    onTab(id) {//点击tab选项
+		this.tab=id
     },
-    onSelect(option) {
-      this.$toast(option.name);
-      this.showShare = false;
+    onSelect() {
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
-.van-nav-bar {
-  z-index: 10!important;
-  .van-icon {
-    color: #fff !important;
-  }
-}
-.van-share-sheet{
-  z-index: 10000!important;
+<style lang="less" scoped>
+@import "../../style/base.less";
+.Navbar{
+	.top-box {//顶部导航容器
+	  display: flex;
+	  justify-content: space-between;
+	  align-content: center;
+	  background: @baseColor;
+	  padding: 10px;
+	   .top-left{
+	     width: 30px;
+	     margin-left: 20px;
+	   }
+	  .top-right {
+	    display: flex;
+	    align-content: center;
+	    .top-right-tab{
+	      padding: 5px 10px;
+	      color: #fff;
+	    }
+	    .on{
+	      border-bottom: 2px solid;
+	    }
+	  }
+	}
 }
 </style>

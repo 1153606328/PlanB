@@ -14,121 +14,111 @@
         </van-row>
         </van-sticky>
     </div> -->
-        <div>
-            <video src="../assets/video.mp4" id="video" loop="loop"  @click="playVideo('video')"></video>
+    <!-- <div>
+            <video src="../assets/video.mp4" id="video" loop="loop" preload  @click="playVideo('video')"></video>
             <div class="videoBtn" @click="playVideo('btn')" v-show="showVideoBtn">
                 <van-icon name="play-circle" class="mr5"/> <span>Paly Video</span>
             </div>
+        </div> -->
+    <!-- <div class="contBox">
+      <div class="leftBox">
+        <div class="headImg">
+          <van-image
+            round
+            width="3rem"
+            height="3rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
+          <div>
+            <p class="fs18 mb5">可惜我是巨蟹座</p>
+            <p>假装这里有一句花里胡哨的个性签名~</p>
+          </div>
         </div>
-    <div class="contBox">
-      <!--left-->
-    <div class="leftBox">
-      <div class="headImg">
-      <van-image
-        round
-        width="3rem"
-        height="3rem"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
-      />
-      <div>
-        <p class="fs18 mb5">可惜我是巨蟹座</p>
-        <p>假装这里有一句花里胡哨的个性签名~</p>
+        <div class="infoBox">
+          <div class="bgColor">
+            <van-divider
+              content-position="left"
+              :style="{
+                color: '#8888',
+                borderColor: '#a9a9a9',
+                padding: '0px',
+              }"
+              >信息</van-divider
+            >
+            <div class="infoText mb10">
+              <van-icon name="user-o" class="fs18 mr5" />
+              <p class="lh18">前端开发工程师</p>
+            </div>
+            <div class="infoText mb10">
+              <van-icon name="phone-o" class="fs18 mr5" />
+              <p class="lh18">18776959052</p>
+            </div>
+            <div class="infoText mb10">
+              <van-icon name="envelop-o" class="fs18 mr5" />
+              <p class="lh18">1153606328@qq.com</p>
+            </div>
+            <div class="infoText mb10">
+              <van-icon name="location-o" class="fs18 mr5" />
+              <p class="lh18">广西南宁</p>
+            </div>
+            <van-divider
+              content-position="left"
+              :style="{
+                color: '#8888',
+                borderColor: '#a9a9a9',
+                padding: '0px',
+              }"
+              >技能</van-divider
+            >
+            <div class="skill">
+              <span
+                :class="['table', item.id == skill ? 'tableActive' : '']"
+                v-for="item in skillArr"
+                :key="item.id"
+                >{{ item.name }}</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="infoBox">
-      <div class="bgColor">
-        <van-divider
-        content-position="left"
-        :style="{ color: '#8888', borderColor: '#a9a9a9', padding: '0px' }"
-        >信息</van-divider
-      >
-        <div class="infoText mb10">
-          <van-icon name="user-o" class="fs18 mr5" />
-          <p class="lh18">前端开发工程师</p>
-        </div>
-        <div class="infoText mb10">
-          <van-icon name="phone-o" class="fs18 mr5" />
-          <p class="lh18">18776959052</p>
-        </div>
-        <div class="infoText mb10">
-          <van-icon name="envelop-o" class="fs18 mr5" />
-          <p class="lh18">1153606328@qq.com</p>
-        </div>
-        <div class="infoText mb10">
-          <van-icon name="location-o" class="fs18 mr5" />
-          <p class="lh18">广西南宁</p>
-        </div>
-        <van-divider
-        content-position="left"
-        :style="{ color: '#8888', borderColor: '#a9a9a9', padding: '0px' }"
-        >技能</van-divider
-      >
-      <div class="skill">
-          <span :class="['table',item.id==skill?'tableActive':'']" v-for="item in skillArr" :key="item.id">{{item.name}}</span>
-        </div>
-      </div>
-      
-        
-       
-        <!-- <van-divider
-        content-position="left"
-        :style="{ color: '#8888', borderColor: '#a9a9a9', padding: '0px' }"
-        >项目</van-divider
-      >
-      <van-skeleton title avatar  :row="10" /> -->
-      </div>
-    </div>
-<!--right-->
-    <div class="rightBox">
-       <!-- <van-divider
-        content-position="left"
-        :style="{ color: '#8888', borderColor: '#a9a9a9', padding: '0px' }"
-        >工作经历</van-divider
-      >
-      <van-skeleton title  :row="3" />
-      <div><p>xxx</p></div> -->
+      <div class="rightBox">
         <div class="rightBg">
-          <van-tabs type="card" background="#dedede" color="#000000A6" >
-            <van-tab v-for="item in tabArr" :title="item.name" :key="item.id" >
-              <!-- list列表 -->
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      @load="onLoad"
-      offset="10"
-      class="listBOX"
-    >
-      <van-card
-        v-for="item in list"
-        :key="item.id"
-        :desc="item.content"
-        :title="item.title"
-        thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-      >
-        <template #tags>
-          <van-tag
-            color="#f2826a"
-            class="mr5"
-            v-for="i in item.labes"
-            :key="i.leve"
-            >{{ i.labe }}</van-tag
-          >
-        </template>
-        <!-- <template #price>
-          <div>{{item.city}}</div>
-        </template>-->
-        <template #num>
-          <div>{{ item.time }}</div>
-        </template>
-      </van-card>
-    </van-list>
+          <van-tabs type="card" background="#dedede" color="#000000A6">
+            <van-tab v-for="item in tabArr" :title="item.name" :key="item.id">
+              <van-list
+                v-model="loading"
+                :finished="finished"
+                @load="onLoad"
+                offset="10"
+                class="listBOX"
+              >
+                <van-card
+                  v-for="item in list"
+                  :key="item.id"
+                  :desc="item.content"
+                  :title="item.title"
+                  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+                >
+                  <template #tags>
+                    <van-tag
+                      color="#f2826a"
+                      class="mr5"
+                      v-for="i in item.labes"
+                      :key="i.leve"
+                      >{{ i.labe }}</van-tag
+                    >
+                  </template>
+                  <template #num>
+                    <div>{{ item.time }}</div>
+                  </template>
+                </van-card>
+              </van-list>
             </van-tab>
           </van-tabs>
         </div>
-    </div>
-      <div class="foot">页尾</div>
-    </div>
-    </div>
+      </div>
+      <div class="foot">桂ICP备2020009713号</div>
+    </div> -->
   </div>
 </template>
 
@@ -195,13 +185,14 @@ export default {
       }
     },
     //list
-     onLoad() {
+    onLoad() {
       setTimeout(() => {
         this.getList();
       }, 1000);
       console.log("onload");
     },
-    getList() {//获取笔记列表
+    getList() {
+      //获取笔记列表
       this.$http.get(this.$api.notes_list).then((res) => {
         console.log(res);
         if ((res.code == 200) & (res.data.length > 0)) {
@@ -213,7 +204,7 @@ export default {
         // 加载状态结束
         this.loading = false;
         // 数据全部加载完成
-        if (this.list.length >= 10) {
+        if (this.list.length >= 5) {
           this.finished = true;
         }
       });
@@ -243,13 +234,13 @@ export default {
   border-color: #fff !important;
 }
 //list
-.van-card{
+.van-card {
   border-radius: 10px;
 }
-.van-card__content{
+.van-card__content {
   text-align: left;
 }
-.van-tabs__wrap{
+.van-tabs__wrap {
   margin-bottom: 15px;
 }
 video {
@@ -304,13 +295,13 @@ video {
       margin-top: 5px;
       margin-left: 20px;
     }
-    .foot{
+    .foot {
       width: 100%;
       padding: 15px;
     }
   }
   .headImg {
-    margin: -58px 20px 20px 20px;
+    margin: 20px;
     background: #fff;
     border-radius: 10px;
     padding: 0 10px 10px 10px;
@@ -342,6 +333,7 @@ video {
     display: flex;
   }
 }
+
 //////响应式 移动优先
 @media screen and (min-width: 768px) {
   .leftBox {
@@ -350,8 +342,8 @@ video {
   .rightBox {
     width: 70% !important;
   }
-  .rightBg{
-    margin-left: 0!important;
+  .rightBg {
+    margin-left: 0 !important;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar> -->
+    <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
     <router-view/>
   </div>
 </template>
