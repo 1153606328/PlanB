@@ -25,7 +25,7 @@ import { Button,
   Tag,AddressEdit,Form,Field,
   Calendar,Picker,Toast,
   ShareSheet,Uploader,Step, Steps,Skeleton,
-  Divider,Sticky,Popover,Tab,Tabs,
+  Divider,Sticky,Popover,Tab,Tabs,Switch,
   Image as VanImage
 } from 'vant';
 import'vant/lib/index.css'
@@ -75,6 +75,7 @@ Vue.use(Sticky);
 Vue.use(Popover);
 Vue.use(Tab);
 Vue.use(Tabs);
+Vue.use(Switch);
 new Vue({
   router,
   store,

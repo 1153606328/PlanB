@@ -295,10 +295,10 @@ video {
       margin-top: 5px;
       margin-left: 20px;
     }
-    .foot {
-      width: 100%;
-      padding: 15px;
-    }
+    // .foot {
+    //   width: 100%;
+    //   padding: 15px;
+    // }
   }
   .headImg {
     margin: 20px;

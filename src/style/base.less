@@ -1,9 +1,14 @@
-@baseColor:#596E79;
-@fuzhuColor:#C7B198;
-@fuzhuClolr2:#DFD3C3;
-@bgColor:#F0ECE3;//背景色
+@import "theme.less";
+@baseColor:var(--baseColor);//主色
+// @fuzhuColor:#C7B198;
+// @fuzhuClolr2:#DFD3C3;
+@fzColor:var(--fzColor);//辅助色
+@bgColor:var(--bgColor);//背景色
+// @nav_title_Color:var(--nav_title_Color);//nav标题色
+
 //文字颜色
-@fon:#323233;
+@fontColor:var(--fontColor);//文字颜色
+
 .loop(@counter) when (@counter > 0) {
     .p@{counter} {
       padding: (1px * @counter);

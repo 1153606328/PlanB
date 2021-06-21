@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" class="dark-theme">
     <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
     <router-view/>
+	<div class="foot">桂ICP备2020009713号</div>
   </div>
 </template>
 <script>
@@ -42,12 +43,18 @@ html,body{
   text-align: center;
   color: #2c3e50;
   background: @bgColor;
+  height: 100%;
 }
 p{margin: 0;}
-.van-nav-bar{
-    background: @baseColor!important;
-    .van-nav-bar__title{
-        color: #fff!important;
-    }
+// .van-nav-bar{
+//     background: @baseColor!important;
+//     .van-nav-bar__title{
+//         color: #fff!important;
+//     }
+// }
+.foot{
+	    position: absolute;
+	    bottom: 0;
+	    width: 100%;
 }
 </style>

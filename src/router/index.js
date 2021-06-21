@@ -4,17 +4,18 @@ import Home from '../views/Home.vue'
 import Address from '../views/Address.vue'
 import Addplan from '../views/Addplan.vue'
 import City from '../views/City.vue'
-import About from '../views/About.vue'
+import Case from '../views/Case.vue'
+import Index from '../views/index.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   meta: { title: '首页', isleftarrow:false  },
-  //   component: Home
-  // },
+  {
+    path: '/',
+    name: 'Index',
+    meta: { title: '新首页', isleftarrow:false  },
+    component: Index
+  },
   {
     path: '/address',
     name: 'Address',
@@ -34,10 +35,10 @@ Vue.use(VueRouter)
     component: City
   },
   {
-    path: '/',
-    name: 'About',
-    meta: { title: '关于我们', isleftarrow:true  },
-    component: About
+    path: '/case',
+    name: 'Case',
+    meta: { title: '案例展示', isleftarrow:true  },
+    component: Case
   },
 
 ]
