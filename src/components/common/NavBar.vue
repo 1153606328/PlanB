@@ -10,11 +10,15 @@
 		>
 		{{item.name}}
 		</div>
+		<div class="topic">
+			<p>切换主题:</p>
+			<van-switch v-model="checked" size="18"  @change ="changeTheme"/>
+		</div>
 	  </div>
 	</div>
 	
 	<!-- 移动端 -->
-	<van-nav-bar :title="nav_title" v-else>
+	<van-nav-bar :title="title" :left-arrow="isleftarrow" @click-left="goBack" v-else>
 	  <template #right>
 	    <van-icon name="wap-nav" size="18" class="nav_icon" @click="onMoreIcon"/>
 	  </template>
@@ -34,7 +38,7 @@
 		</div>
 		<div class="pop_conneter">
 			<div class="pop_cell" v-for="item in tab_list" :key="item.id" @click="onTab(item)">
-				<van-icon name="wap-nav" size="18"/>
+				<van-icon :name="item.icon" size="18"/>
 				<p class="pop_text">{{item.name}}</p>
 			</div>
 			<div class="topic">
@@ -49,19 +53,21 @@
 
 <script>
 export default {
+	props:["title","isleftarrow"],//动态接收：标题，返回按钮
   data() {
     return {
 		tab_list:[
-			{name:"首页",id:0,url:"/"},
-			{name:"作品",id:1,url:"/case"},
-			{name:"日志",id:2,url:"/"},
-			{name:"留言",id:3,url:"/"},
+			{name:"首页",id:0,url:"/",icon:"wap-home"},
+			{name:"作品",id:1,url:"/case",icon:"point-gift"},
+			{name:"日志",id:2,url:"/logs",icon:"graphic"},
+			{name:"留言",id:3,url:"/message",icon:"smile-comment"},
 			],
 		tab:0,
-		nav_title:"首页",//标题
+		// nav_title:"首页",//标题
 		screenWidth: document.body.clientWidth,//屏幕宽度
 		show:false,//弹出层
 		checked:false,//主题按钮
+		// isleftarrow:false,//nav返回按钮
     };
   },
   mounted () {
@@ -92,11 +98,19 @@ export default {
   methods: {
     onTab(item) {//点击tab选项
 		this.tab = item.id // 修改tab
-		this.nav_title = item.name // 设置标题
+		// this.nav_title = item.name // 设置标题
 		this.show = false // 关闭弹窗
-		this.$router.push(item.url); // 跳转
+
+		if(item.url!=this.$route.path){
+			this.$router.push(item.url); // 跳转
+		}
+		
     },
-    onSelect() {
+	toLink(url){//跳转
+		this.$router.push(url);
+	},
+    goBack() {//后退
+		history.back()
     },
 	onMoreIcon(){//点击更多图标
 		this.show = true
@@ -131,13 +145,23 @@ export default {
 	    align-content: center;
 	    .top-right-tab{
 	      padding: 5px 10px;
-	      color: #fff;
+	      color: @fontColor;
 		  font-size: 12px;
-		  text-align: 12px);
+		 
 	    }
 	    .on{
 	      border-bottom: 2px solid;
 	    }
+	  }
+	  .topic{
+		  display: flex;
+		  align-items: center;
+		  justify-content: space-between;
+		  padding: 5px 10px;
+		  color: @fontColor;
+		  p{
+			  margin-right: 10px;
+		  }
 	  }
 	}
 	.van-nav-bar{//nav颜色样式
@@ -147,7 +171,7 @@ export default {
 		}
 	}
 	/deep/ .van-ellipsis{color: @fontColor!important;}//nav标题颜色
-	
+	/deep/ .van-icon-arrow-left{color: @fontColor!important;}//nav标题颜色
 	.popupStyle{//弹出层样式
 		width:256px;
 		height: 100%;

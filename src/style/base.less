@@ -8,7 +8,12 @@
 
 //文字颜色
 @fontColor:var(--fontColor);//文字颜色
-
+.text_over{//文字溢出2
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
 .loop(@counter) when (@counter > 0) {
     .p@{counter} {
       padding: (1px * @counter);

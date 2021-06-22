@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="dark-theme">
     <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
-    <router-view/>
+    <router-view />
 	<div class="foot">桂ICP备2020009713号</div>
   </div>
 </template>
@@ -33,8 +33,12 @@ export default {
 </script>
 <style lang="less">
 @import "./style/index.less";
-html,body{
-  height: 100%;
+html{height: 100%;}
+body{
+height:100%;
+width: 100%;
+margin:0;
+padding:0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -43,18 +47,15 @@ html,body{
   text-align: center;
   color: #2c3e50;
   background: @bgColor;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
 }
 p{margin: 0;}
-// .van-nav-bar{
-//     background: @baseColor!important;
-//     .van-nav-bar__title{
-//         color: #fff!important;
-//     }
-// }
 .foot{
 	    position: absolute;
 	    bottom: 0;
+		background-color: @bgColor;
 	    width: 100%;
 }
 </style>

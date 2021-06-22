@@ -1,51 +1,78 @@
 <template>
 	<div class="index">
-		<div class="banner">
-			<div class="banner_bg">
-				<img src="../assets/alogo_bg.png" width="90%">
-			</div>
-			<div class="banner_text">
-				<!-- 一句很长的描述 -->
-			</div>
+		<!-- 猜你喜欢 -->
+		<div class="banner_box">
+			<van-swipe :autoplay="3000" lazy-render>
+			  <van-swipe-item v-for="item in banner_list" :key="item.id">
+				<div class="banner" :style="{backgroundImage: 'url(' + item.img + ')'}">
+				</div>
+			  </van-swipe-item>
+			</van-swipe>
 		</div>
-		<div class="user">
-			<div class="user_left">
-				<img src="../assets/logo.png" class="user_img">
-				<p>可惜我是巨蟹座</p>
-				<p>记录平时遇到的技术问题和学习到的新知识。</p>
+		<div class="conneter_box" >
+			<!-- 全部作品 -->
+			<div class="case_box">
+				<div class="Title">
+					<p>全部作品</p>
+					<van-icon name="weapp-nav" size="18" @click = "toLink('/case')"/>
+				</div>
+				<div class="case">
+					<div class="case_list" v-for="item in case_list" :key="item.id">
+						<div class="images" :style="{backgroundImage: 'url(' + item.img + ')'}">
+						</div>
+						<div class="conneter" @click = "toLink('/case_info')">
+							<p class="fs14">{{item.title}}</p>
+							<p class="mb5 mt5">{{item.time}}</p>
+							<p class="text_over">{{item.text}}</p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="user_right">
-				<div class="">
-					<div class="table" style="width:100%;">
-						和谐
-					</div>
-					<div class="table" style="width:50%;">
-						自由
-					</div>
-					<div class="table" style="width:75%;">
-						民主
-					</div>
-					<div class="table" style="width:25%;">
-						富强
+			<!-- 最近碎语 -->
+			<div class="essay_box">
+				<div class="Title">
+					<p>最近动态</p>
+					<!-- <van-icon name="weapp-nav" size="18"/> -->
+				</div>
+				<div class="essay">
+					<div class="essay_card" v-for="item in essay_list" :key="item.id">
+						<div class="flex e_card_title mb10">
+							<div class="e_left flex">
+								<van-image
+								  round
+								  width="50px"
+								  height="50px"
+								  src="https://img.yzcdn.cn/vant/cat.jpeg"
+								/>
+								<div class="ml15">
+									<p>{{item.userName}}</p>
+									<p>{{item.label}}</p>
+								</div>
+							</div>
+							<div class="e_right">
+								<van-icon name="weapp-nav" size="18"/>
+							</div>
+						</div>
+						<div class="e_card_text text_over mb10">
+							{{item.text}}
+						</div>
+						<div class="e_card_img">
+							
+						</div>
+						<div class="e_card_foot flex">
+							<div class="foot_btn flex">
+								<van-icon name="like" size="18"/>
+								<span class="ml5">喜欢</span>
+							</div>
+							<div class="foot_btn flex">
+								<van-icon name="chat" size="18"/>
+								<span class="ml5">评论</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="coneter">
-			<div class="coneter_text">
-				<p class="coneter_text_title">设计</p>
-				<p>丰富的css动效</p>
-			</div>
-			<div class="coneter_text">
-				<p class="coneter_text_title">服务范围</p>
-				<p>个人/企业应用开发</p>
-			</div>
-			<div class="coneter_text">
-				<p class="coneter_text_title">案例展示</p>
-				<p>优质案例展示</p>
-			</div>
-		</div> -->
-		
 	</div>
 </template>
 
@@ -54,67 +81,119 @@
 		name: "index",
 		data() {
 		  return {
+			  banner_list:[
+				   {id:0,img:'https://img.yzcdn.cn/vant/cat.jpeg'},
+				   {id:1,img:'https://img.yzcdn.cn/vant/apple-2.jpg'},
+			  ],
+			  case_list:[//作品列表
+				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",to:'url',id:0,type:"uni-app",time:"2021-6",title:'质安油服',text:'一站式的油电气智慧运维解决平台,"互联网+线下运维服务"模式，提供报修、审批、计费、施工手续办理、人脸验证、实时监控、验收等线上办理，节约成本，提高效率',},
+				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2020",title:'农资商城',text:'农产品交易平台',to:'url',id:1,type:"web"},
+				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2018",title:'皮皮二手车',text:'二手车交易平台',to:'url',id:2,type:"web"},
+			  ],
+			  essay_list:[//最近动态
+				  {id:0,userName:"planB",label:"前端工程师",text:"开始搭建自己的个人博客,用于记录开发过程中遇到的问题"},
+				  {id:1,userName:"planB",label:"前端工程师",text:"一条测试记录"}
+			  ]
+			  
 		  };
 		},
 		methods:{
-			
+			toLink(url){//跳转
+				this.$router.push(url);
+			}
 		}
 	}
 </script>
 
 <style lang="less" scoped >
-.banner{
-	background: #2c2e3a;
-	.banner_bg{
-		
-	}
-	.banner_text{
-		padding: 30px;
-		color:#9feaf9;
-		font-size: 16px;
+@import "../style/base.less";
+.Title{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	font-size: 14px;
+}
+.banner_box{
+	.banner{
+		width: 100%;
+		height: 300px;
+		background-repeat: no-repeat;
+		background-size: 100%;
 	}
 }
-.user{
+.conneter_box{
 	display: flex;
-	padding: 10px;
-	.user_left{
-		width: 40%;
-		background: #fff;
-		padding: 10px;
-		border-radius: 15px;
-		margin-right: 10px;
-		.user_img{
-			width: 50px;
-			height: 50px;
-		}
-	}
-	.user_right{
-		width: 60%;
-		background: #fff;
-		padding: 10px;
-		border-radius: 15px;
-		.table{
-			background: #596E79;
-			color: #fff;
-			height: 20px;
-			margin-bottom: 5px;
-			border-radius: 15px;
-		}
-	}
+	flex-wrap: wrap;
+	background: @bgColor;
+	padding-bottom: 20px;
 }
-.coneter{
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	padding: 20px;
-	background: #fff;
-	.coneter_text{
-		padding: 10px;
-		width: 200px;
-		.coneter_text_title{
+.case{
+	margin: 0 15px;
+	margin-bottom: 10px;
+	.case_list{
+		background: #fff;
+		border-radius: 10px;
+		padding: 15px;
+		margin-bottom: 10px;
+		.images{
+			width: 100%;
+			background-size: 100%;
+			// background: url(../assets/banner/banner2.jpg);
+			background-repeat: no-repeat;
+			background-position: center;
 			margin-bottom: 10px;
-			font-size:16px;
+			min-height: 220px;
 		}
+		.conneter{
+			text-align: left;
+		}
+	}
+}
+.essay{//最近动态、文章
+	margin: 0 15px;
+	.flex{
+		display: flex;
+		align-items: center;
+	}
+	.essay_card{
+		background: #fff;
+		padding: 15px;
+		border-radius: 10px;
+		margin-bottom: 10px;
+		.e_card_title{
+			justify-content: space-between;
+			text-align: left;
+		}
+		.e_card_text{
+			text-align: left;
+		}
+		.e_card_foot{
+			justify-content: flex-end;
+			.foot_btn{
+				padding: 5px 15px;
+				margin-right: 10px;
+				border-radius: 15px;
+				color: @fontColor;
+				background: @baseColor;
+			}
+		}
+	}
+}
+@media (min-width:1440px){//屏幕大于1440
+	.case_box{
+		width: 65%;
+	}
+	.essay_box{
+		width: 35%;
+	}
+}
+@media (max-width:1439px){//屏幕小于1440
+	.case_box{
+		width: 100%;
+	}
+	.essay_box{
+		width: 100%;
 	}
 }
 </style>

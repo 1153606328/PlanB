@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Address from '../views/Address.vue'
-import Addplan from '../views/Addplan.vue'
-import City from '../views/City.vue'
-import Case from '../views/Case.vue'
 import Index from '../views/index.vue'
+import Case from '../views/case/Case.vue'
+import Logs from '../views/Logs.vue'
+import Message from '../views/Message.vue'
+import CaseInfo from '../views/case/Case_info.vue'
+
 
 Vue.use(VueRouter)
 
@@ -13,34 +13,33 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Index',
-    meta: { title: '新首页', isleftarrow:false  },
+    meta: { title: '首页', isleftarrow:false  },
     component: Index
-  },
-  {
-    path: '/address',
-    name: 'Address',
-    meta: { title: '编辑地址', isleftarrow:true  },
-    component: Address
-  },
-  {
-    path: '/addplan',
-    name: 'Addplan',
-    meta: { title: '添加计划', isleftarrow:true  },
-    component: Addplan
-  },
-  {
-    path: '/city',
-    name: 'City',
-    meta: { title: '城市', isleftarrow:true  },
-    component: City
   },
   {
     path: '/case',
     name: 'Case',
-    meta: { title: '案例展示', isleftarrow:true  },
-    component: Case
+    meta: { title: '作品', isleftarrow:true },
+    component: Case,
   },
-
+  {
+    path: '/logs',
+    name: 'Logs',
+    meta: { title: '日志', isleftarrow:true  },
+    component: Logs
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    meta: { title: '留言', isleftarrow:true  },
+    component: Message
+  },
+  {
+    path: '/case_info',
+    name: 'CaseInfo',
+    meta: { title: '作品详情', isleftarrow:true },
+    component: CaseInfo,
+  }
 ]
 
 const router = new VueRouter({
