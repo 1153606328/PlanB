@@ -8,8 +8,12 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "lib-flexible": "^0.3.2",
+    "mysql": "^2.18.1",
     "postcss-plugin-px2rem": "^0.8.1",
     "vant": "^2.11.0",
     "vue": "^2.6.11",

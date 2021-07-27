@@ -1,12 +1,22 @@
 <template>
   <div class="Case">
-	  <div class="tab_box">
-	  	<div :class="tabs_on === item.id?'tabs_on tabs':' tabs'" 
-		@click="changeTab(item.id)"
-		v-for="item in tabs" :key = "item.id"
+	  <div class="tab_bg">
+		  <div class="tab_box">
+	  	<div :class="tabs_on === index?'tabs_on tabs':' tabs'" 
+		@click="changeTab(index)"
+		v-for="(item,index) in tabs" :key = "index"
 		>
 	  		{{item.name}}
 	  	</div>
+	  </div>
+	  <div class="tab_box mt5">
+	  	<div :class="tabs_on2 === index?'tabs_on tabs':' tabs'" 
+		@click="changeTab2(index)"
+		v-for="(item,index) in tabs[tabs_on].children" :key = "index"
+		>
+	  		{{item.name}}
+	  	</div>
+	  </div>
 	  </div>
 	  <div class="case_box">
 	  	<!-- <div class="case_list" v-for="item in case_list" :key = "item.id" >
@@ -23,10 +33,10 @@
 		<div class="case_list" v-for="item in case_list" :key="item.id">
 			<div class="images" :style="{backgroundImage: 'url(' + item.img + ')'}">
 			</div>
-			<div class="conneter" @click = "toLink('/case_info')">
+			<div class="conneter" @click = "toLink('/case_info',item)">
 				<p class="fs14">{{item.title}}</p>
 				<p class="mb5 mt5">{{item.time}}</p>
-				<p class="text_over">{{item.text}}</p>
+				<p class="text_over">{{item.sketch}}</p>
 			</div>
 		</div>
 	  </div>
@@ -38,23 +48,64 @@ export default {
     name:"Case",
     data(){
         return{
-			tabs:[{id:0,name:'全部'},{id:1,name:'app'},{id:2,name:'小程序'},{id:3,name:'H5网站'}],//tab选项卡
+			//tab选项卡
+			tabs:[
+				{
+					id:1,name:'开发案例',
+					children:[
+						{name:"app"},
+						{name:"小程序"},
+						{name:"H5"}
+					]
+				},
+				{
+					id:2,name:'日志',
+						children:[
+							{name:"开发笔记"},
+							{name:"游记"},
+						]
+				},
+				],
+				
 			tabs_on:0,//选中的tab
+			tabs_on2:0,//选中的子分类
             case_list:[//作品列表
-            				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",to:'url',id:0,type:"uni-app",time:"2021-6",title:'质安油服',text:'一站式的油电气智慧运维解决平台,"互联网+线下运维服务"模式，提供报修、审批、计费、施工手续办理、人脸验证、实时监控、验收等线上办理，节约成本，提高效率',},
-            				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2020",title:'农资商城',text:'农产品交易平台',to:'url',id:1,type:"web"},
-            				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2018",title:'皮皮二手车',text:'二手车交易平台',to:'url',id:2,type:"web"},
             ],
 			
         }
     },
+	mounted() {
+		this.getCaseList();
+	},
 	methods:{
 		changeTab(id){//tab点击事件
 			this.tabs_on = id
+			this.tabs_on2 = 0
+			this.search(id)//搜索
 		},
-		toLink(url){//跳转
-			this.$router.push(url);
-		}
+		changeTab2(id){//tab点击事件
+			this.tabs_on2 = id
+			// this.search(id)//搜索
+		},
+		toLink(url,data){//跳转
+			this.$router.push({path:url,query:{data:data}});
+			// this.$router.push({name:url,params:{data:data}});
+		}, 
+		//搜索作品
+		search(val){
+			this.$http.get('/case/query?type='+val).then((res) => {
+			  if (res.code == 200) {
+					this.case_list = res.data
+			  }
+			});
+		},
+		getCaseList() {//获取作品列表
+			  this.$http.get('/case/query').then((res) => {
+			    if (res.code == 200) {
+					this.case_list = res.data
+			    }
+			  });
+			},
 	}
 }
 </script>
@@ -65,16 +116,23 @@ export default {
 //tab选项卡
 .Case{
 	width: 100%;
+
+}
+.tab_bg{
+	background: #fff;
+	margin: 10px;
+    border-radius: 10px;
+	padding: 10px;
 }
 .tab_box{
 	display: flex;
-	padding: 10px 15px;
+	// padding: 10px 15px;
 	.tabs{
-		padding: 5px 20px;
+		padding: 5px 10px;
 	}
 	.tabs_on{
-		background: #13DF81;
-		color:#fff;
+		background: @baseColor;
+		color:@fontColor;
 		border-radius: 15px;
 	}
 }
@@ -90,7 +148,7 @@ export default {
 		margin-bottom: 10px;
 		.images{
 			width: 100%;
-			background-size: 100%;
+			background-size: cover;
 			// background: url(../assets/banner/banner2.jpg);
 			background-repeat: no-repeat;
 			background-position: center;

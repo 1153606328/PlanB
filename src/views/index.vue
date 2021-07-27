@@ -13,17 +13,19 @@
 			<!-- 全部作品 -->
 			<div class="case_box">
 				<div class="Title">
-					<p>全部作品</p>
+					<p>最新作品</p>
 					<van-icon name="weapp-nav" size="18" @click = "toLink('/case')"/>
 				</div>
 				<div class="case">
-					<div class="case_list" v-for="item in case_list" :key="item.id">
-						<div class="images" :style="{backgroundImage: 'url(' + item.img + ')'}">
+					<div class="case_list" v-for="item in case_list" :key="item.id" @click = "toLink('/case_info',item)">
+						<div class="images" 
+						:style="{backgroundImage: 'url(' + item.img + ')'}"
+						>
 						</div>
-						<div class="conneter" @click = "toLink('/case_info')">
+						<div class="conneter">
 							<p class="fs14">{{item.title}}</p>
 							<p class="mb5 mt5">{{item.time}}</p>
-							<p class="text_over">{{item.text}}</p>
+							<p class="text_over">{{item.sketch}}</p>
 						</div>
 					</div>
 				</div>
@@ -82,14 +84,12 @@
 		data() {
 		  return {
 			  banner_list:[
-				   {id:0,img:'https://img.yzcdn.cn/vant/cat.jpeg'},
-				   {id:1,img:'https://img.yzcdn.cn/vant/apple-2.jpg'},
+				   {id:0,img:'http://qny.panhuaqing.cn/IMG_1.jpg'},
+				   {id:1,img:'http://qny.panhuaqing.cn/IMG_2.jpg'},
 			  ],
 			  case_list:[//作品列表
-				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",to:'url',id:0,type:"uni-app",time:"2021-6",title:'质安油服',text:'一站式的油电气智慧运维解决平台,"互联网+线下运维服务"模式，提供报修、审批、计费、施工手续办理、人脸验证、实时监控、验收等线上办理，节约成本，提高效率',},
-				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2020",title:'农资商城',text:'农产品交易平台',to:'url',id:1,type:"web"},
-				  {img:"https://img.yzcdn.cn/vant/cat.jpeg",time:"2018",title:'皮皮二手车',text:'二手车交易平台',to:'url',id:2,type:"web"},
 			  ],
+			  case_id:100,//被点击的作品-放大图片
 			  essay_list:[//最近动态
 				  {id:0,userName:"planB",label:"前端工程师",text:"开始搭建自己的个人博客,用于记录开发过程中遇到的问题"},
 				  {id:1,userName:"planB",label:"前端工程师",text:"一条测试记录"}
@@ -97,10 +97,24 @@
 			  
 		  };
 		},
+		mounted() {
+			this.getCaseList();
+		},
 		methods:{
-			toLink(url){//跳转
-				this.$router.push(url);
-			}
+			toLink(url,data){//跳转
+				this.$router.push({path:url,query:{data:data}});
+				// this.$router.push({name:url,params:{data:data}});
+			},
+			images_big(id){
+				this.case_id = id
+			},
+			getCaseList() {//获取作品列表
+			  this.$http.get('/case/query').then((res) => {
+			    if (res.code == 200) {
+					this.case_list = res.data
+			    }
+			  });
+			},
 		}
 	}
 </script>
@@ -117,7 +131,7 @@
 .banner_box{
 	.banner{
 		width: 100%;
-		height: 300px;
+		// min-height: 200px;
 		background-repeat: no-repeat;
 		background-size: 100%;
 	}
@@ -138,13 +152,16 @@
 		margin-bottom: 10px;
 		.images{
 			width: 100%;
-			background-size: 100%;
-			// background: url(../assets/banner/banner2.jpg);
+			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center;
 			margin-bottom: 10px;
 			min-height: 220px;
+			// transition: background-size 1s;//过渡动画
 		}
+		// .images_big{
+		// 	background-size: 120%;
+		// }
 		.conneter{
 			text-align: left;
 		}
@@ -187,6 +204,9 @@
 	.essay_box{
 		width: 35%;
 	}
+	.banner{
+		min-height: 600px;
+	}
 }
 @media (max-width:1439px){//屏幕小于1440
 	.case_box{
@@ -194,6 +214,9 @@
 	}
 	.essay_box{
 		width: 100%;
+	}
+	.banner{
+		min-height: 200px;
 	}
 }
 </style>

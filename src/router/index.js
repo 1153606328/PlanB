@@ -5,6 +5,7 @@ import Case from '../views/case/Case.vue'
 import Logs from '../views/Logs.vue'
 import Message from '../views/Message.vue'
 import CaseInfo from '../views/case/Case_info.vue'
+import Login from '../views/Login.vue'
 
 
 Vue.use(VueRouter)
@@ -39,7 +40,13 @@ Vue.use(VueRouter)
     name: 'CaseInfo',
     meta: { title: '作品详情', isleftarrow:true },
     component: CaseInfo,
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: { title: '登录注册', isleftarrow:true  },
+    component: Login
+  },
 ]
 
 const router = new VueRouter({

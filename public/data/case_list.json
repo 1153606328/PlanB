@@ -1,0 +1,58 @@
+{
+	"data": [{
+			"id": 0,
+			"img": "http://qny.panhuaqing.cn/IMG_3.jpg",
+			"type": "uni-app",
+			"time": "2021-6",
+			"title": "质安油服",
+			"text": "一站式的油电气智慧运维解决平台,互联网+线下运维服务 模式，提供报修、审批、计费、施工手续办理、人脸验证、实时监控、验收等线上办理，节约成本，提高效率",
+			"module": [{
+				"name": "首页",
+				"text": "描述内容"
+			}, {
+				"name": "商城",
+				"text": "描述内容"
+			}, {
+				"name": "个人中心",
+				"text": "描述内容"
+			}]
+		},
+		{
+			"id": 1,
+			"img": "http://qny.panhuaqing.cn/IMG_4.jpg",
+			"type": "web",
+			"time": "2020",
+			"title": "糖都农资商城",
+			"text": "农产品交易平台",
+			"module": [{
+				"name": "首页",
+				"text": "描述内容"
+			}, {
+				"name": "商城",
+				"text": "描述内容"
+			}, {
+				"name": "个人中心",
+				"text": "描述内容"
+			}]
+		},
+		{
+			"id": 2,
+			"img": "http://qny.panhuaqing.cn/IMG_2.jpg",
+			"type": "web",
+			"time": "2019-6",
+			"title": "皮皮二手车",
+			"text": "二手车交易平台",
+			"module": [{
+				"name": "首页",
+				"text": "描述内容"
+			}, {
+				"name": "商城",
+				"text": "描述内容"
+			}, {
+				"name": "个人中心",
+				"text": "描述内容"
+			}]
+		}
+	],
+	"code": 200
+}

@@ -2,7 +2,10 @@
   <div id="app" class="dark-theme">
     <NavBar v-show="navShow" :title="title" :isleftarrow="isleftarrow"></NavBar>
     <router-view />
-	<div class="foot">桂ICP备2020009713号</div>
+	<div class="foot">
+		<p>桂ICP备2020009713号</p>
+		<p>版本:1.0.0</p>
+	</div>
   </div>
 </template>
 <script>

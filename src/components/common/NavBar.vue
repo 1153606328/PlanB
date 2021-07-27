@@ -61,6 +61,8 @@ export default {
 			{name:"作品",id:1,url:"/case",icon:"point-gift"},
 			{name:"日志",id:2,url:"/logs",icon:"graphic"},
 			{name:"留言",id:3,url:"/message",icon:"smile-comment"},
+			{name:"登录",id:4,url:"/login",icon:"smile-comment"},
+			
 			],
 		tab:0,
 		// nav_title:"首页",//标题
